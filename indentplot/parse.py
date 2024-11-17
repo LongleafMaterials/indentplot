@@ -7,13 +7,37 @@ Created on Sun Nov 17 09:49:55 2024
 """
 
 class TestData:
-    def __init__(self, xml, header, measurements):
+    def __init__(self, xml, txt_file):
         # xml - as-parsed data with tabular data (from curves) stored in dataframes
-        # header - dataframe containing all header data
-        # measurements - dataframe with test results 
+        # txt_file - path to tabular text file from Bruker software, contains test results
         self.xml = xml
-        self.header = header
-        self.measurements = measurements
+        self.txt_file = txt_file
+
+    # Create dataframe of header data for each indent point
+    def header(self):
+        import pandas as pd
+        xml = self.xml
+        
+        # Create list of test IDs
+        test_ids = list(xml.keys())
+        
+        # Create dataframe from test headers
+        header_df = pd.DataFrame.from_dict({k:v for k, v in zip(test_ids, [xml[v]['header'] for v in list(xml.keys())])}, orient='index')
+        
+        return header_df
+    
+    # Create dataframe with condensed test results
+    def results(self):
+        import pandas as pd
+        txt_file = self.txt_file
+        
+        # Convert text to dataframe
+        processed_data = pd.read_fwf(txt_file)
+        processed_data.columns = ['test file name', 'hc (nm)', 'Er (GPa)', 'H (GPa)']
+        processed_data = processed_data.dropna()
+        processed_data.reset_index(inplace=True, drop=True)
+        
+        return processed_data
 
 # 
 # Parse Bruker nanoindentation data, e.g., from PI 89 SEM Picoindenter
@@ -28,7 +52,7 @@ class TestData:
 #    data_dir - Path to directory containing the test output file(s)
 #
 #
-def brukerTDM(data_dir):
+def brukerTDM(data_dir, txt_file):
     import os
     import pandas as pd
     import xmltodict
@@ -165,11 +189,18 @@ def brukerTDM(data_dir):
        
         return result
 
-    # Convert XML data to dataframe
+    # Create object containing useful parsed data
     def xml_to_df(xml):
         col_names = ['test',
                      'info',
                      ]
         dataframe = pd.DataFrame
 
-    return parse(data_dir)
+    # Perform parsing and store result
+    test_data = TestData(parse(data_dir), txt_file)
+
+    return test_data
+
+# Test run
+result = brukerTDM('N:\\Samples\\Nanoindentation\\Nanoindentation Data\\Raw Data\\',
+                   'N:\\Samples\\Nanoindentation\\Nanoindentation Data\\Processed Data\\E-beam_W.txt')
