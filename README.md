@@ -3,4 +3,4 @@ I intend to develop this tool into a Python package to facilitate parsing, analy
 
 The first supported data format will be for Bruker software (.tdm, .hld, and .txt outputs), particularly that used for the [Hysitron PI 89](https://www.bruker.com/en/products-and-solutions/test-and-measurement/nanomechanical-instruments-for-sem-tem/hysitron-pi-89-sem-picoindenter.html).
 
-!(/assets/readme_img1.png)
+![](/assets/readme_img1.png)
