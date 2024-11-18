@@ -7,10 +7,10 @@ Created on Sun Nov 17 09:49:55 2024
 """
 
 # 
-# Parse Bruker nanoindentation data, e.g., from PI 89 SEM Picoindenter
+# Parse Bruker nanoindentation data, e.g., from Hysitron PI 89 SEM Picoindenter
 #   https://www.bruker.com/en/products-and-solutions/test-and-measurement/nanomechanical-instruments-for-sem-tem/hysitron-pi-89-sem-picoindenter.html
 #
-# The following files are produced with each test (i.e., indentation):
+# The following files are produced with each test, i.e., indentation made:
 #    tdm - XML containing details such as version, instrument model, etc.
 #    hld - text file containing raw results
 #    tdx - unknown, not readable
