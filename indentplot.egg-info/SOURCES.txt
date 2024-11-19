@@ -1,0 +1,16 @@
+LICENSE
+README.md
+pyproject.toml
+setup.py
+indentplot/__init__.py
+indentplot/grid_transform.py
+indentplot/indentplot.py
+indentplot/label_indents.py
+indentplot/overlay.py
+indentplot/parse.py
+indentplot/test_c.py
+indentplot.egg-info/PKG-INFO
+indentplot.egg-info/SOURCES.txt
+indentplot.egg-info/dependency_links.txt
+indentplot.egg-info/requires.txt
+indentplot.egg-info/top_level.txt
