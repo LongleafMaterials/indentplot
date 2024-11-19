@@ -1,0 +1,25 @@
+[project]
+name = "indentplot"
+dynamic = ["version"]
+description = "Tools for parsing and plotting maps of materials indentation data such as nanoindentation and microhardness."
+readme = "README.md"
+authors = [{ name = "Colin Fletcher", email = "colin@longleafresearch.com"}]
+license = {file = "LICENSE"}
+requires-python = ">=3.9"
+classifiers = ["Development Status :: 3 - Alpha",
+			   "Programming Language :: Python :: 3.9",
+			   ]
+dependencies = [
+	"matplotlib==3.8.0",
+	"numpy==2.1.3",
+	"opencv_python==4.9.0.80",
+	"opencv_python_headless==4.10.0.84",
+	"pandas==2.2.3",
+	"scipy==1.11.4",
+	"xmltodict==0.13.0",
+	]
+keywords = ["microhardness", "nanoindentation", "hardness"]
+
+[project.urls]
+Homepage = "https://github.com/LongleafMaterials/indentplot"
+Repository = "https://github.com/LongleafMaterials/indentplot.git"
