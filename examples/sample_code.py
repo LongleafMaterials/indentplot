@@ -41,7 +41,7 @@ test_data = ind.TestData(parsed_data, TEST_RESULT_FILE)
 ### Converting to image coordinates
 
 # Path to the image to be used for overlay plots
-IMAGE_PATH = "N:\\Samples\\Nanoindentation\\e-beam_W_Colin\\rbv_nanoindentation_1_0015.tif"
+IMAGE_PATH = "<path to image used for overlay>"
 
 # label_indents will open the image at IMAGE PATH. There is not yet a prompt, but the user
 # will need to pick two indentations as references for conversion of the physical dimensions,
@@ -83,3 +83,46 @@ def test_plot(x,z):
                 c='black')
 test_plot(results.x_transform,
           results.z_transform)
+
+### Making an overlay plot
+
+# Arguments:
+#   IMAGE_PATH - Path to the image used for overlay plot 
+#   data - dataframe containing at least the x and y coordinates along with 
+#          corresponding values of the feature to be plotted. The "results"
+#          dataframe above satisfies these requirements.
+#   feature - Column name of the feature to be plotted (e.g., hardness, modulus, etc.)
+#             The colorbar title will match this name.
+#   pad - (Optional) Extra space, in pixels, on the bottom of the image to
+#         omit indentations from the plot. This is to prevent plotting over
+#         something like a scale bar.
+#   x_col - (Optional) Name of the column containing the x coordinates, if it differs
+#           from "x_transform"
+#   y_col - (Optional) Name of the column containing the y coordinates, if it differs
+#           from "z_transform"
+#   contour - (Optional) matplotlib parameters for a contour plot
+#   scatter - (Optional) matplotlib parameters for a scatter plot (passing False 
+#             will omit the scatter plot)
+#   cbar - (Optional) matplotlib parameters for a colorbar
+
+# Making a basic overlay plot is very simple:
+#
+ind.plot_overlay(IMAGE_PATH, 
+                 results, 
+                 '<Feature name>')
+
+# The overlay plot function passes many matplotlib arguments through for plotting,
+# giving control over the end result. An example with matplotlib argyuments passed
+# for the contour plot, scatter plot, and colorbar is provided:
+#
+ind.plot_overlay(IMAGE_PATH, 
+                 results, 
+                 '<Feature name>',
+                 contour = {'cmap': 'jet',
+                            'levels': 12,
+                            'alpha': 0.66},
+                 scatter = {'color': 'black',
+                            'marker': '^',
+                            's': 10},
+                 cbar = {'fraction': 0.025,
+                         'pad': 0.05})
