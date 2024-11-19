@@ -3,7 +3,7 @@ I intend to develop these tools into a Python package to facilitate parsing, ana
 
 The package is currently only available from github and can be installed using one of the following commands:
 ```
-pip install git+https://github.com/LongleafMaterials/indentplot.git --trusted-source github.com
+pip install git+https://github.com/LongleafMaterials/indentplot.git --trusted-host github.com
 ```
 or
 ```
