@@ -54,6 +54,7 @@ class TestData:
         # NOTE: Attempt to process this from the data itself as alternative to software output
         def parse_results(self):
             import pandas as pd
+            import re
             txt_file = self.txt_file
             
             # Convert text to dataframe
@@ -69,20 +70,23 @@ class TestData:
             coord_columns = [c for c in self.header.columns if ('Stage' in c) and ('Scratch' not in c)]
             processed_data = processed_data.join(self.header[coord_columns], how='outer')
             
+            # Change index to indentation number
+            index = processed_data.index
+            new_index = []
+            r = re.compile('.*_(\d*)')
+            for i in index:
+                indent_number = int(re.findall('.*_(\d*)', i)[0])
+                new_index.append(indent_number)
+            processed_data.index = new_index
+            
             return processed_data
         self.results = parse_results(self)
 
-# Path to working and data directories
-wd = 'N:\\Samples\\Nanoindentation\\'
-data_dir = wd + 'Nanoindentation Data\\Raw Data\\'
 
-# Add working directory to PATH environment variable
-import sys
-sys.path.append(wd)
 
-# Test run
-import parse
-result = parse.brukerTDM('N:\\Samples\\Nanoindentation\\Nanoindentation Data\\Raw Data\\')
 
-test_object = TestData(result, 
-                       'N:\\Samples\\Nanoindentation\\Nanoindentation Data\\Processed Data\\E-beam_W.txt')
+
+
+
+
+
