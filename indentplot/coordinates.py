@@ -51,11 +51,11 @@ def label_indents(image_path):
         if event == cv2.EVENT_LBUTTONDOWN:
             indent_number = prompt(f'Indentation number for {position[counter]}:')
             indent_number = int(indent_number)
-            #print(f'Coordinates of {indent_number}: ({x}, {y})')
             
             # Add indentation and coordinates to dataframe
             coord.loc[indent_number] = [x, y]
-            
+
+            # Incremenet input counter            
             counter += 1
             
     # Define name of image window
@@ -68,9 +68,6 @@ def label_indents(image_path):
     cv2.setMouseCallback(window_name, mouse_callback)
     cv2.imshow(window_name, img)
 
-    # Prompt for grid dimensions
-    #dims = prompt('Enter grid dimensions (# of indents) in form dim1,dim2:')
-
     # Wait for a key press
     cv2.waitKey(0)
     cv2.destroyAllWindows()
@@ -78,9 +75,12 @@ def label_indents(image_path):
     return coord
 
 # Transform physical locations to coincide with image locations (real position -> pixel position
-def transform_grid(coord, results):
+def transform_grid(coord, test_results):
     import math
     import numpy as np
+    
+    # Perform a copy so the original dataframe is not affected
+    results = test_results.copy()
     
     # Function to calculate distance between two points
     def point_distance(pt1, pt2):
@@ -146,19 +146,4 @@ def transform_grid(coord, results):
     results['x_transform'] = results['x_transform'] + x_translate
     results['z_transform'] = results['z_transform'] + z_translate
     
-    return results[['x_transform'], ['z_transform']]
-
-# Interpolate pixel coordinates of all indentations from corner coordinates and number
-# For a grid, need three corner points labeled in the image to determine location and numbers of all points
-# Test output has Stage X, Y, Z. Pixel coordinates correlating those
-def interpolate_points(coord):
-    # Calculate y for given x and two points on line
-    def point_slope(x, pt1, pt2):
-        x1, y1 = pt1
-        x2, y2 = pt2
-        m = (y2 - y1) / (x2 - x1)
-        
-        y = m * (x - x1) + y1
-        return y
-
-
+    return results[['x_transform', 'z_transform']]
