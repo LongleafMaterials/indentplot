@@ -13,12 +13,12 @@ import indentplot as ind
 # fixed width format (FWF) looking somewhat like:
 # <name of test file.tdm> <hc value> <Er value> <H value>
 #
-TEST_RESULT_FILE = 'N:\\Samples\\Nanoindentation\\Nanoindentation Data\\Processed Data\\E-beam_W.txt'
+TEST_RESULT_FILE = '<path to file>'
 
 # Path to the data folder containing all of the indentation result files for processing.
 # For Bruker, there is one set of files (.hld, .tdm, .tdx) for every indentation.
 #
-DATA_FOLDER = 'N:\\Samples\\Nanoindentation\\Nanoindentation Data\\Raw Data\\'
+DATA_FOLDER = '<path to directory containing test data>'
 
 # Parse data (in this case Bruker .tdm format) from the data folder. This will read all of
 # the .tdm files (XML-formatted) into a list of dictionaries. Each dictionary contains all
