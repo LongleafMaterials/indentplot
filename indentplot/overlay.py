@@ -4,9 +4,6 @@ Overlay plot of indentation data on an image.
 @author: Colin Fletcher
 """
 # Plot an overlay
-import numpy as np
-from scipy import ndimage 
-import matplotlib.pyplot as plt
 
 # Arguments:
 #   image - Path to the image used for overlay plot 
@@ -39,6 +36,10 @@ def plot_overlay(IMAGE_PATH,
                  cbar = {'fraction': 0.025,
                          'pad': 0.05}
                  ):
+    import numpy as np
+    from scipy import ndimage 
+    import matplotlib.pyplot as plt
+    
     # Get background image (SEM image of indentations)
     image = plt.imread(IMAGE_PATH)
     
@@ -50,7 +51,7 @@ def plot_overlay(IMAGE_PATH,
     aspect = x_max/y_max
     
     ## Prepare data for plotting
-    data = data.results[[x_col, y_col, feature]]
+    data = data[[x_col, y_col, feature]]
     
     ## Remove points outside the image range
     data = data[(data[x_col] >= 0) & (data['x_transform'] <= x_max)]

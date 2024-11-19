@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: indentplot
-Version: 0.0.1
+Version: 0.1.0
 Summary: Tools for parsing and plotting maps of materials indentation data such as nanoindentation and microhardness.
 Author: Colin fletcher
 Author-email: Colin Fletcher <colin@longleafresearch.com>
@@ -700,13 +700,13 @@ I intend to develop these tools into a Python package to facilitate parsing, ana
 
 The package is currently only available from github and can be installed using one of the following commands:
 ```
-pip install git+https://github.com/LongleafMaterials/indentplot.git --trusted-source github.com
+pip install git+https://github.com/LongleafMaterials/indentplot.git --trusted-host github.com
 ```
 or
 ```
 pip install git+https://github.com/LongleafMaterials/indentplot.git --user
 ```
 
-The first supported data format will be for Bruker software (.tdm, .hld, and .txt outputs), particularly that used for the [Hysitron PI 89](https://www.bruker.com/en/products-and-solutions/test-and-measurement/nanomechanical-instruments-for-sem-tem/hysitron-pi-89-sem-picoindenter.html).
+The first supported data format is for Bruker software (.tdm, .hld, and .txt outputs), specifically that from the [Hysitron PI 89](https://www.bruker.com/en/products-and-solutions/test-and-measurement/nanomechanical-instruments-for-sem-tem/hysitron-pi-89-sem-picoindenter.html).
 
 ![](/assets/readme_img1.png)

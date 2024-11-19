@@ -2,7 +2,6 @@
 """
 Parse hardness or indentation data from raw machine outputs
 
-Created on Sun Nov 17 09:49:55 2024
 @author: Colin Fletcher
 """
 

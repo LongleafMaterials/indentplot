@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Nov 19 12:52:51 2024
+Transform physical coordinates of indentations to pixel coordinates in order to plot overlay images.
+
 @author: Fletcher
 """
 
