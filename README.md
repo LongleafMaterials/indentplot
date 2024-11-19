@@ -10,6 +10,6 @@ or
 pip install git+https://github.com/LongleafMaterials/indentplot.git --user
 ```
 
-The first supported data format is for Bruker software (.tdm, .hld, and .txt outputs), particularly that used for the [Hysitron PI 89](https://www.bruker.com/en/products-and-solutions/test-and-measurement/nanomechanical-instruments-for-sem-tem/hysitron-pi-89-sem-picoindenter.html).
+The first supported data format is for Bruker software (.tdm, .hld, and .txt outputs), specifically that from the [Hysitron PI 89](https://www.bruker.com/en/products-and-solutions/test-and-measurement/nanomechanical-instruments-for-sem-tem/hysitron-pi-89-sem-picoindenter.html).
 
 ![](/assets/readme_img1.png)
