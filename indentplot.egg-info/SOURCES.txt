@@ -3,8 +3,8 @@ README.md
 pyproject.toml
 setup.py
 indentplot/__init__.py
+indentplot/data_obj.py
 indentplot/grid_transform.py
-indentplot/indentplot.py
 indentplot/label_indents.py
 indentplot/overlay.py
 indentplot/parse.py
