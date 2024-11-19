@@ -43,8 +43,9 @@ def label_indents(image_path):
         position = {1: 'Point 1',
                     2: 'Point 2'}
         
-        # After the third entry, close window
+        # After the third entry, reset counter and close window
         if counter > len(position):
+            counter = 1
             cv2.destroyAllWindows()
             
         # Prompt for user input
