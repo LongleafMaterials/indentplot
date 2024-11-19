@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Nov 18 09:22:22 2024
+User selection of reference indentations (part of coordinate transformation)
+
 @author: Fletcher
 """
 
