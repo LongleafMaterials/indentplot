@@ -55,10 +55,17 @@ class TestData:
         def parse_results(self):
             import pandas as pd
             import re
+            import io
             txt_file = self.txt_file
             
+            # Read text file
+            txt = open(txt_file).read()
+            
+            # Remove spaces from end of each line in text file
+            txt = '\n'.join([t.rstrip() for t in txt.split('\n')])
+            
             # Convert text to dataframe
-            processed_data = pd.read_fwf(txt_file)
+            processed_data = pd.read_table(io.StringIO(txt), sep=' ', header=None)
             processed_data.columns = ['test file name', 'hc (nm)', 'Er (GPa)', 'H (GPa)']
             processed_data = processed_data.dropna()
 
@@ -73,9 +80,10 @@ class TestData:
             # Change index to indentation number
             index = processed_data.index
             new_index = []
-            r = re.compile('.*_(\d*)')
+            pattern = r'.*(\d{4}).*'
+            r = re.compile(pattern)
             for i in index:
-                indent_number = int(re.findall('.*_(\d*)', i)[0])
+                indent_number = int(re.findall(r, i)[0])
                 new_index.append(indent_number)
             processed_data.index = new_index
             
