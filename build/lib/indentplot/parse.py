@@ -37,7 +37,7 @@ def parse_brukerTDM(data_dir):
     def parseHeader(file_name, path, extension):
         # Read test result file
         file_path = path + file_name + '.' + extension
-        with open(file_path) as f:
+        with open(file_path, 'r', encoding='mbcs') as f:
             text = f.read()
         
         # Split file by lines
@@ -88,7 +88,7 @@ def parse_brukerTDM(data_dir):
     def parseData(file_name, path, extension):
         # Read test result file
         file_path = path + file_name + '.' + extension
-        with open(file_path) as f:
+        with open(file_path, encoding='mbcs') as f:
             text = f.read()
         text = text.split('\n')
         

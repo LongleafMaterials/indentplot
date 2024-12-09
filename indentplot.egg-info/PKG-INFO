@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: indentplot
-Version: 0.1.0
+Version: 0.1.2
 Summary: Tools for parsing and plotting maps of materials indentation data such as nanoindentation and microhardness.
 Author: Colin fletcher
 Author-email: Colin Fletcher <colin@longleafresearch.com>

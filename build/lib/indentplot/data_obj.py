@@ -28,7 +28,7 @@ class TestData:
             
             # Process numeric columns to remove units from entries and change to numeric format
             # Compile regex expression for identifying numeric columns with units
-            r = re.compile('(-*\d+\S*[\d]*[e+]*)[ ]*(.*)')
+            r = re.compile(r'(-*\d+\S*[\d]*[e+]*)[ ]*(.*)')
             
             cols = header_df.columns
             new_col_names = {}
@@ -55,10 +55,17 @@ class TestData:
         def parse_results(self):
             import pandas as pd
             import re
+            import io
             txt_file = self.txt_file
             
+            # Read text file
+            txt = open(txt_file).read()
+            
+            # Remove spaces from end of each line in text file
+            txt = '\n'.join([t.rstrip() for t in txt.split('\n')])
+            
             # Convert text to dataframe
-            processed_data = pd.read_fwf(txt_file)
+            processed_data = pd.read_table(io.StringIO(txt), sep=' ', header=None)
             processed_data.columns = ['test file name', 'hc (nm)', 'Er (GPa)', 'H (GPa)']
             processed_data = processed_data.dropna()
 
@@ -73,11 +80,16 @@ class TestData:
             # Change index to indentation number
             index = processed_data.index
             new_index = []
-            r = re.compile('.*_(\d*)')
+            pattern = r'.*(\d{4}).*'
+            r = re.compile(pattern)
             for i in index:
-                indent_number = int(re.findall('.*_(\d*)', i)[0])
+                indent_number = int(re.findall(r, i)[0])
                 new_index.append(indent_number)
             processed_data.index = new_index
+            
+            # Remove whitespace from beginning or end of column names
+            processed_data.columns = [c.lstrip().rstrip() for c in processed_data.columns]
+            
             
             return processed_data
         self.results = parse_results(self)
