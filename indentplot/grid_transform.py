@@ -30,6 +30,9 @@ def grid_transform(coord, test_results):
     pt2_px = tuple(coord.loc[n2])
     pixel_distance = point_distance(pt1_px, pt2_px)
     
+    # Invert Z coordinate to match image coordinates
+    results['Stage Z (mm)'] = -1 * results['Stage Z (mm)']
+    
     # Calculate physical distance between the two specified points
     pt1 = tuple(results.loc[n1][['Stage X (mm)', 'Stage Z (mm)']])
     pt2 = tuple(results.loc[n2][['Stage X (mm)', 'Stage Z (mm)']])
@@ -42,11 +45,8 @@ def grid_transform(coord, test_results):
     # Calculate angle (in radians) of line between transform points
     theta_2 = math.atan((pt1[1] - pt2[1])/(pt1[0] - pt2[0]))
     
-    ## Calculate rotation angle
-    angle = theta_2 - theta_1
-    # If difference in point coordinates is of the same sign, angle must be inverted
-    if math.copysign(1, pt1[0] - pt2[0]) == math.copysign(1, pt1[1] - pt2[1]):
-        angle = angle * -1
+    # Calculate rotation angle
+    angle = theta_1 - theta_2
     
     # Perform rotation of set of coordinates
     def rotate_grid(x, z, angle):
