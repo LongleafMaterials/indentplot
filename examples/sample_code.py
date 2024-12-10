@@ -81,6 +81,8 @@ def test_plot(x,z):
                 s=120,
                 lw=0.6,
                 c='black')
+    for i in range(0,len(x)):
+        ax.text(x[i], z[i], str(i), ha='center', va='top', c='white')
 test_plot(results.x_transform,
           results.z_transform)
 

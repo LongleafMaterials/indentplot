@@ -56,6 +56,9 @@ def label_indents(image_path):
             
             # Add indentation and coordinates to dataframe
             coord.loc[indent_number] = [x, y]
+            
+            # Output to console
+            print(f'Indent {position[counter]} at ({x}, {y})')
 
             # Incremenet input counter            
             counter += 1

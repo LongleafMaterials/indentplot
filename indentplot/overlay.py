@@ -25,6 +25,7 @@ def plot_overlay(IMAGE_PATH,
                  data, 
                  feature,
                  pad = None,
+                 smoothing = None,
                  x_col = 'x_transform',
                  y_col = 'z_transform',
                  contour = {'cmap': 'jet',
@@ -45,6 +46,8 @@ def plot_overlay(IMAGE_PATH,
     
     # Get x and y max values for image, incorporating y padding adjustment
     y_max, x_max = image.shape
+    if not pad:
+        pad = 0
     y_max = y_max - pad
     
     # Calculate aspect ratio (x/y) of image
@@ -73,21 +76,20 @@ def plot_overlay(IMAGE_PATH,
     y = data['z_transform']
     z = data[feature]
     X, Y, Z = prepare_contour(x, y, z)
-    
-    smoothing = False
+
+    # Plot points at indentations    
+    if scatter:
+        ax.scatter(x, y, **scatter, zorder=2)
+        
     # Smooth contour if specified
     if smoothing:
-        x = ndimage.zoom(x, 10)
-        y = ndimage.zoom(y, 10)
-        z = ndimage.zoom(z, 10)    
+        x = ndimage.zoom(x, smoothing)
+        y = ndimage.zoom(y, smoothing)
+        z = ndimage.zoom(z, smoothing)    
     
     # Plot contour overlay
     contourplot = ax.tricontourf(x,y,z, **contour)
-    
-    # Plot points at indentations    
-    if scatter:
-        ax.scatter(x, y, **scatter)
-    
+        
     # Configure colorbar
     cb = fig.colorbar(contourplot, **cbar) 
     cb.ax.set_title(feature, pad=30, size=22, loc='center')
@@ -96,3 +98,4 @@ def plot_overlay(IMAGE_PATH,
     # Configure plot
     plt.axis('off')    
     plt.tight_layout()
+    plt.show()
