@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.1.2' 
+VERSION = '0.1.3' 
 DESCRIPTION = 'Indentation plotting utility.'
 LONG_DESCRIPTION = 'Utility for plotting hardness data (microhardness, nanoindentation, etc.) overlaid on micrographs or images.'
 
@@ -8,7 +8,7 @@ LONG_DESCRIPTION = 'Utility for plotting hardness data (microhardness, nanoinden
 setup(
         name="indentplot", 
         version=VERSION,
-        author="Colin fletcher",
+        author="Colin Fletcher",
         author_email="<colin@longleafresearch.com>",
         description=DESCRIPTION,
         long_description=LONG_DESCRIPTION,
