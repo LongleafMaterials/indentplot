@@ -94,6 +94,7 @@ def plot_overlay(IMAGE_PATH,
     cb = fig.colorbar(contourplot, **cbar) 
     cb.ax.set_title(feature, pad=30, size=22, loc='center')
     cb.ax.tick_params(labelsize=16) 
+    cb.solids.set(alpha=1)
     
     # Configure plot
     plt.axis('off')    
